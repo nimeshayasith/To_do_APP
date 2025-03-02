@@ -4,13 +4,19 @@ const bcrypt = require('bcryptjs');
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-});
-
-UserSchema.pre('save', async function (next) {
-  if (this.isModified('password')) {
-    this.password = await bcrypt.hash(this.password, 10);
+  todos:[
+    {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Todo",
+    }
+],
+createdAt:{
+    type:Date,
+    default:Date.now
+},},
+  {
+    timestamps: true,
   }
-  next();
-});
+);
 
 module.exports = mongoose.model('User', UserSchema);

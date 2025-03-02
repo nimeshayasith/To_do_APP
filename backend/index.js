@@ -2,18 +2,27 @@ const express = require('express');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const dotenv = require('dotenv');
+const cors = require('cors');
 // const taskRoutes = require('./routes/taskRoutes');
 // const taskListRoutes = require('./routes/taskListRoutes');
 // const authMiddleware = require('./middleware/authMiddleware');
-const cors = require('cors');
+
 
 dotenv.config();
 
-const app = express();
 connectDB();
+const app = express();
 
-app.use(cors());
 app.use(express.json());
+
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials:true,
+    allowedHeaders: 'Content-Type, Authorization'
+}));
+
+
 
 app.use('/api/auth', authRoutes);
 //app.use('/api/tasks', authMiddleware, taskRoutes);
