@@ -41,18 +41,20 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8 text-blue-600">My Tasks</h1>
-        <div className="space-y-4">
-          {tasks.map((task) => (
-            <Task
-              key={task._id}
-              task={task}
-              onUpdate={handleUpdate}
-              onDelete={handleDelete}
-            />
-          ))}
+    <div>
+      <div className="min-h-screen bg-gray-100 p-8">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl font-bold text-center mb-8 text-blue-600">My Tasks</h1>
+          <div className="space-y-4">
+            {tasks.map((task) => (
+              <Task
+                key={task._id}
+                task={task}
+                onUpdate={handleUpdate}
+                onDelete={handleDelete}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

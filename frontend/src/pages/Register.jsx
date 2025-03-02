@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import api from '../api';
 import { useNavigate } from 'react-router-dom';
 
+
 const Register = () => {
-  const [username, setUsername] = useState('');
+  const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post('/auth/register', { username, password });
+      const res = await api.post('/auth/register', { email, password });
       localStorage.setItem('token', res.data.token);
       navigate('/dashboard');
     } catch (err) {
@@ -27,8 +28,8 @@ const Register = () => {
             <label className="block text-sm font-medium text-gray-700">Username</label>
             <input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               required
             />
